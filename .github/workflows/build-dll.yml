@@ -17,10 +17,18 @@ jobs:
         with:
           go-version: '1.26.x'
 
-      - name: Setup MinGW (gcc)
-        uses: egor-tensin/setup-mingw@v2
-        with:
-          platform: x64
+      # 不用 egor-tensin/setup-mingw@v2：它在 mingw 16.1.0 上会因找不到
+      # libpthread.dll.a 报错(action 未适配新版 mingw)。直接在 runner 自带的
+      # Chocolatey 里装 mingw，并把 bin 目录追加到 PATH。
+      - name: Install MinGW (choco)
+        shell: pwsh
+        run: |
+          choco install mingw -y --no-progress
+          echo "C:\ProgramData\mingw64\mingw64\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
+      - name: Verify gcc
+        shell: bash
+        run: gcc --version
 
       - name: Build DLL (amd64)
         shell: bash
