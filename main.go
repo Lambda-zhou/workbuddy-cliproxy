@@ -325,6 +325,8 @@ func wbModels() []pluginapi.ModelInfo {
 		{"hy3", "Hy3", 262144},
 		{"hy3-preview", "Hy3 Preview", 262144},
 		{"hy3-preview-agent", "Hy3 Preview Agent", 262144},
+		{"hy4-preview", "Hy4 Preview", 262144},
+		{"hy4-preview-agent", "Hy4 Preview Agent", 262144},
 		{"deepseek-v4-pro", "DeepSeek V4 Pro", 1000000},
 		{"deepseek-v4-flash", "DeepSeek V4 Flash", 1000000},
 	}
